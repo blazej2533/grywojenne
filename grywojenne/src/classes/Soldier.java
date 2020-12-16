@@ -52,17 +52,22 @@ public class Soldier  {
         this.force = force;
     }
 
-    public void updateRank(){
-        if(experience==5*Ranks.Serial.getValue()){
-            this.setRanks(Ranks.Capral);
-            this.setExperience(1);
-
-        }else if(experience==5*Ranks.Capral.getValue()){
-            this.setRanks(Ranks.Capitan);
-            this.setExperience(1);
-        }else if(experience==5*Ranks.Major.getValue()){
-            this.setRanks(Ranks.Major);
-            this.setExperience(1);
+    public void updateRank(Soldier soldier){
+        if(soldier.getRanks().getValue()==1){
+            if(soldier.getExperience()==5*soldier.getRanks().getValue()) {
+                soldier.setRanks(Ranks.Capral);
+                soldier.setExperience(1);
+            }
+        }else if(soldier.getRanks().getValue()==2){
+            if(soldier.experience==5*Ranks.Capral.getValue()) {
+                soldier.setRanks(Ranks.Capitan);
+                soldier.setExperience(1);
+            }
+        }else if(soldier.getRanks().getValue()==3) {
+            if (soldier.experience == 5*Ranks.Capitan.getValue()) {
+                soldier.setRanks(Ranks.Major);
+                soldier.setExperience(1);
+            }
         }
     }
 

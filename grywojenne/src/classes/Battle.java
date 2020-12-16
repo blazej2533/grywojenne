@@ -1,10 +1,12 @@
 package classes;
-
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import org.junit.Test;
 
 import java.util.*;
 
 public class Battle implements Observable {
+
     Sekretarz sekretarz=new Sekretarz();
 
     List<Soldier> soldierList1 = new ArrayList<>();
@@ -36,7 +38,6 @@ public class Battle implements Observable {
             ob.update(battle);
 
     }
-
     public General getGeneral1() {
         return general1;
     }
@@ -54,6 +55,7 @@ public class Battle implements Observable {
     }
 
     public Battle() {
+
         addObservator(sekretarz);
 
         Soldier soldier1 = new Soldier(Ranks.Serial, 3, 3);
@@ -72,17 +74,16 @@ public class Battle implements Observable {
         general2.addNewSoldier(soldier5);
         general2.addNewSoldier(soldier6);
 
+
         general1.buySoldier(Ranks.Major);
         general1.armyManeuver();
         general1.armyManeuver();
+        general1.armyManeuver();
+
 
 
         general1.attackOtherGeneral(general1, general2);
         general1.attackOtherGeneral(general1, general2);
-
-
-
-
 
     }
 

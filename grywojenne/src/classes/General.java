@@ -58,7 +58,7 @@ public class General {
         for(Soldier soldier:soldierList){
             soldier.setExperience(soldier.getExperience()+1);
             coinsThisGeneral=coinsThisGeneral+soldier.getRanks().getValue();
-            soldier.updateRank();
+            soldier.updateRank(soldier);
         }
         for(Soldier soldier:soldierList){
             soldier.setForce(soldier.getExperience()*soldier.getRanks().getValue());
@@ -117,7 +117,7 @@ public class General {
             }
             for(Soldier s:general2.soldierList){
                 s.setExperience(s.getExperience()+1);
-                s.updateRank();
+                s.updateRank(s);
 
             }
 

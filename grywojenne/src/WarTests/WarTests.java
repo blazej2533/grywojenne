@@ -14,13 +14,13 @@ public class WarTests {
     @Test
     public void rankTest(){
         Soldier soldier=new Soldier(Ranks.Serial,5,5);
-        soldier.updateRank();
+        soldier.updateRank(soldier);
         assertEquals(Ranks.Capral,soldier.getRanks());
     }
     @Test
     public void experienceTest(){
         Soldier soldier=new Soldier(Ranks.Serial,5,5);
-        soldier.updateRank();
+        soldier.updateRank(soldier);
         assertEquals(1,soldier.getExperience());
     }
     @Test
@@ -48,7 +48,7 @@ public class WarTests {
         General general=new General("Armia 1",1000,soldierList,battle);
         general.armyManeuver();
 
-        soldier.updateRank();
+        soldier.updateRank(soldier);
 
         assertEquals(1,soldier.getExperience());
         assertEquals(Ranks.Capral,soldier.getRanks());
@@ -64,7 +64,7 @@ public class WarTests {
 
         for (int i = 0; i < 5; i++){
             general.armyManeuver();
-            soldier.updateRank();
+            soldier.updateRank(soldier);
         }
 
         assertEquals(2,soldier.getExperience());
@@ -241,7 +241,10 @@ public class WarTests {
 
         battle.getGeneral1().addNewSoldier(soldier1);
         battle.getGeneral1().addNewSoldier(soldier2);
+
+
         battle.getGeneral1().buySoldier(Ranks.Serial);
+
 
 
 

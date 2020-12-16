@@ -8,7 +8,6 @@ public class Sekretarz implements Observator {
     public void update(Battle battle) {
 
         if (oldValue != null) {
-
             if (battle.getGeneral1().getSoldierList().size() > oldValue.getGeneral1().getSoldierList().size()) {
                 System.out.println("Żołnierz dołączył do "+battle.getGeneral1().getArmyName());
             }
@@ -16,8 +15,8 @@ public class Sekretarz implements Observator {
                 System.out.println("Żołnierz dołączył do "+battle.getGeneral2().getArmyName());
             }
         }
-        oldValue=battle;
 
+        oldValue=battle;
 
 
     }
