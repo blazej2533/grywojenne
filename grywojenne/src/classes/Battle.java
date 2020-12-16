@@ -5,16 +5,19 @@ import org.junit.Test;
 
 import java.util.*;
 
-public class Battle implements Observable {
+public class Battle implements Observable,Cloneable {
 
-    Sekretarz sekretarz=new Sekretarz();
+
+
+    Sekretarz sekretarz = new Sekretarz();
 
     List<Soldier> soldierList1 = new ArrayList<>();
     List<Soldier> soldierList2 = new ArrayList<>();
-    General general1 = new General("Armia 1", 1000, soldierList1,this);
-    General general2 = new General("Armia 2", 1000, soldierList2,this);
+    General general1 = new General("Armia 1", 1000, soldierList1, this);
+    General general2 = new General("Armia 2", 1000, soldierList2, this);
 
-    private ArrayList<Observator> observators= new ArrayList<Observator>();
+    private ArrayList<Observator> observators = new ArrayList<Observator>();
+
     @Override
     public void deleteObservator(Observator object) {
 
@@ -26,7 +29,7 @@ public class Battle implements Observable {
     @Override
     public void addObservator(Observator object) {
 
-        if(object!=null)
+        if (object != null)
             observators.add(object);
 
     }
@@ -34,10 +37,11 @@ public class Battle implements Observable {
     @Override
     public void notifyObservator(Battle battle) {
 
-        for(Observator ob:observators)
+        for (Observator ob : observators)
             ob.update(battle);
 
     }
+
     public General getGeneral1() {
         return general1;
     }
@@ -54,7 +58,8 @@ public class Battle implements Observable {
         this.general2 = general2;
     }
 
-    public Battle() {
+    @Override
+    public Battle clone() {
 
         addObservator(sekretarz);
 
@@ -81,9 +86,13 @@ public class Battle implements Observable {
         general1.armyManeuver();
 
 
-
         general1.attackOtherGeneral(general1, general2);
         general1.attackOtherGeneral(general1, general2);
+        try {
+            return (Battle) super.clone();
+        } catch (CloneNotSupportedException e) {
+            return new Battle();
+        }
 
     }
 

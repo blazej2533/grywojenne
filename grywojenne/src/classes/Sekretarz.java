@@ -3,10 +3,8 @@ package classes;
 public class Sekretarz implements Observator {
     Battle oldValue;
 
-
     @Override
-    public void update(Battle battle) {
-
+    public void update(Battle battle)   {
         if (oldValue != null) {
             if (battle.getGeneral1().getSoldierList().size() > oldValue.getGeneral1().getSoldierList().size()) {
                 System.out.println("Żołnierz dołączył do "+battle.getGeneral1().getArmyName());
@@ -16,7 +14,8 @@ public class Sekretarz implements Observator {
             }
         }
 
-        oldValue=battle;
+        oldValue=battle.clone();
+
 
 
     }
