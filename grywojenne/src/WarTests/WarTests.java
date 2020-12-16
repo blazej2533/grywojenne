@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WarTests {
     Battle battle=new Battle();
+    Sekretarz sekretarz=new Sekretarz();
     @Test
     public void rankTest(){
         Soldier soldier=new Soldier(Ranks.Serial,5,5);
@@ -36,7 +37,7 @@ public class WarTests {
 
         general.armyManeuver();
         assertEquals(996,general.getCoins());
-        assertEquals(15,general.getTotalForceArmy());
+        assertEquals(12,general.getTotalForceArmy());
     }
     @Test
     public void soldierExperienceUpdate(){
@@ -230,6 +231,29 @@ public class WarTests {
                 "[ranks=Serial," +
                         " experience=2," +
                         " force=2]" ,general2.getSoldierList().toString());
+
+    }
+    @Test
+    public void testSekretarz(){
+        battle.addObservator(sekretarz);
+        Soldier soldier1 = new Soldier(Ranks.Serial, 4, 4);
+        Soldier soldier2 = new Soldier(Ranks.Serial, 3, 3);
+
+        battle.getGeneral1().addNewSoldier(soldier1);
+        battle.getGeneral1().addNewSoldier(soldier2);
+        battle.getGeneral1().buySoldier(Ranks.Serial);
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 
