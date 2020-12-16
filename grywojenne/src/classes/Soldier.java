@@ -56,6 +56,7 @@ public class Soldier  {
         if(experience==5*Ranks.Serial.getValue()){
             this.setRanks(Ranks.Capral);
             this.setExperience(1);
+
         }else if(experience==5*Ranks.Capral.getValue()){
             this.setRanks(Ranks.Capitan);
             this.setExperience(1);

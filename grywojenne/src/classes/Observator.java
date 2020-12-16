@@ -2,6 +2,6 @@ package classes;
 
 public interface Observator {
 
-    void update();
+    void update(Battle battle);
 
 }

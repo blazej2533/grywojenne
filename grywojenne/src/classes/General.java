@@ -32,6 +32,10 @@ public class General {
         this.battle = battle;
     }
 
+    public void setSoldierList(List<Soldier> soldierList) {
+        this.soldierList = soldierList;
+    }
+
     public double getCoins() {
         return coins;
     }
@@ -54,6 +58,10 @@ public class General {
         for(Soldier soldier:soldierList){
             soldier.setExperience(soldier.getExperience()+1);
             coinsThisGeneral=coinsThisGeneral+soldier.getRanks().getValue();
+            soldier.updateRank();
+        }
+        for(Soldier soldier:soldierList){
+            soldier.setForce(soldier.getExperience()*soldier.getRanks().getValue());
         }
         this.setCoins(this.getCoins() - coinsThisGeneral) ;
     }
@@ -63,6 +71,8 @@ public class General {
         Soldier soldier=new Soldier(type,1,type.getValue());
         this.coins=this.coins-(10*type.getValue());
         this.soldierList.add(soldier);
+        battle.notifyObservator(battle);
+
 
     }
 
@@ -89,9 +99,7 @@ public class General {
                     found.add(s);
                 }
             }
-            for(Soldier s:general1.soldierList){
-                s.setExperience(s.getExperience()+1);
-            }
+
 
         }
 
@@ -109,9 +117,12 @@ public class General {
             }
             for(Soldier s:general2.soldierList){
                 s.setExperience(s.getExperience()+1);
+                s.updateRank();
 
             }
+
         }
+
         general1.soldierList.removeAll(found);
         general2.soldierList.removeAll(found);
 
@@ -126,7 +137,7 @@ public class General {
 
     public void addNewSoldier(Soldier soldier){
         this.soldierList.add(soldier);
-        battle.notifyObservator(this.battle);
+        battle.notifyObservator(battle);
 
     }
 
